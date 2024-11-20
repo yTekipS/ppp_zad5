@@ -6,7 +6,7 @@ using namespace std;
 
 struct Date
 {
-	int temp;
+	int temp = 0;
 	string data;
 };
 
@@ -17,6 +17,8 @@ int main()
 	vector <Date> lines;
 	lines.reserve(100);
 	string line="";
+
+	
 
 	if (file.good()) {
 		while (!file.eof())
@@ -40,13 +42,31 @@ int main()
 					h = lines[i];
 					lines[i] = lines[i - 1];
 					lines[i - 1] = h;
-				}
+				} 
 			}
 		}
 
-		for (auto& item : lines) {
+		for (auto item : lines) {
 			cout << item.data << ";" << item.temp << "\n";
 		}
+
+		int min = lines[0].temp;
+		int i = 1;
+		int counter = 1;
+		while (min == lines[i].temp) {
+			counter++;
+			i++;
+		}
+		cout << "\nNajmniejsza temperatura mialo " << counter << " dni.\n";
+
+		int max = lines[size-1].temp;
+		int j = 0;
+		int counterr = 1;
+		while (max == lines[size-2-j].temp) {
+			counterr++;
+			j++;
+		}
+		cout << "\nNajwieksza temperatura mialo " << counterr << " dni.\n";
 	}
 
 	else cout << "File not open.";
