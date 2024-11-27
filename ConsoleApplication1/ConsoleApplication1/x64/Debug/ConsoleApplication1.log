@@ -1,3 +1,4 @@
 ﻿  ConsoleApplication1.cpp
-C:\Users\uczen\source\repos\ppp_zad5\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(39,12): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\uczen\source\repos\ppp_zad5\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(16,12): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\uczen\source\repos\ppp_zad5\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(45,12): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
   ConsoleApplication1.vcxproj -> C:\Users\uczen\Source\Repos\ppp_zad5\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe

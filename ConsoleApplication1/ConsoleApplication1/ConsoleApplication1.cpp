@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <ctime>
 using namespace std;
 
 struct Date
@@ -12,16 +13,21 @@ struct Date
 
 int main()
 {
+	srand(time(NULL));
+
 	ifstream file("temperatury.txt");
 	ofstream wyniki("wyniki.txt");
+	ofstream sorted("sorted.txt");
 	Date date;
 	vector <Date> lines;
+	const int size = 10;
+	string miasta[size] = { "Rzeszow ", "Krakow ", "Lwow ", "Hamburg ", "Londyn ", "Warszawa ", "Poznan ", "Lizbona ", "Moskwa ", "Wolk "};
 	lines.reserve(100);
 	string line="";
 
 	
 
-	if (file.good() && wyniki.good()) {
+	if (file.good() && wyniki.good() && sorted.good()) {
 		while (!file.eof())
 		{
 			int flag = 0;
@@ -46,11 +52,12 @@ int main()
 				} 
 			}
 		}
+
 		float avr = 0;
 
 		for (auto item : lines) {
 			cout << item.data << ";" << item.temp << "\n";
-			avr += item.temp;
+			avr += item.temp; 
 		}
 		avr = avr / lines.size();
 
@@ -75,10 +82,16 @@ int main()
 		}
 		cout << "\nNajwieksza temperatura mialo " << counterr << " dni.\n";
 		wyniki << "Najwieksza temperatura wynosila " << lines[lines.size()-1].temp << ". Wystapila  " << counterr << " razy.\n";
+
+
+		for (auto item : lines) {
+			sorted << miasta[rand() % size] << item.data << ';' << item.temp << '\n';
+		}
 	}
 
 	else cout << "File not open.";
 
 	file.close();	 
 	wyniki.close();
+	sorted.close();
 }
