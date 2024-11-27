@@ -20,8 +20,8 @@ int main()
 	ofstream sorted("sorted.txt");
 	Date date;
 	vector <Date> lines;
-	const int size = 10;
-	string miasta[size] = { "Rzeszow ", "Krakow ", "Lwow ", "Hamburg ", "Londyn ", "Warszawa ", "Poznan ", "Lizbona ", "Moskwa ", "Wolk "};
+	const int  s = 10;
+	string miasta[s] = { "Rzeszow ", "Krakow ", "Lwow ", "Hamburg ", "Londyn ", "Warszawa ", "Poznan ", "Lizbona ", "Moskwa ", "Wolka Grodziska "};
 	lines.reserve(100);
 	string line="";
 
@@ -85,7 +85,7 @@ int main()
 
 
 		for (auto item : lines) {
-			sorted << miasta[rand() % size] << item.data << ';' << item.temp << '\n';
+			sorted << miasta[rand() % s] << item.data << ';' << item.temp << '\n';
 		}
 	}
 
