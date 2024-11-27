@@ -13,6 +13,7 @@ struct Date
 int main()
 {
 	ifstream file("temperatury.txt");
+	ofstream wyniki("wyniki.txt");
 	Date date;
 	vector <Date> lines;
 	lines.reserve(100);
@@ -20,7 +21,7 @@ int main()
 
 	
 
-	if (file.good()) {
+	if (file.good() && wyniki.good()) {
 		while (!file.eof())
 		{
 			int flag = 0;
@@ -45,10 +46,15 @@ int main()
 				} 
 			}
 		}
+		float avr = 0;
 
 		for (auto item : lines) {
 			cout << item.data << ";" << item.temp << "\n";
+			avr += item.temp;
 		}
+		avr = avr / lines.size();
+
+		wyniki << "Srednia temperatur wynosila: " << avr << "\n";
 
 		int min = lines[0].temp;
 		int i = 1;
@@ -58,6 +64,7 @@ int main()
 			i++;
 		}
 		cout << "\nNajmniejsza temperatura mialo " << counter << " dni.\n";
+		wyniki << "Najmniejsza temperatura wynosila " << lines[0].temp << ". Wystapila " << counter << " razy.\n";
 
 		int max = lines[size-1].temp;
 		int j = 0;
@@ -67,9 +74,11 @@ int main()
 			j++;
 		}
 		cout << "\nNajwieksza temperatura mialo " << counterr << " dni.\n";
+		wyniki << "Najwieksza temperatura wynosila " << lines[lines.size()-1].temp << ". Wystapila  " << counterr << " razy.\n";
 	}
 
 	else cout << "File not open.";
 
 	file.close();	 
+	wyniki.close();
 }

@@ -1,0 +1,3 @@
+Srednia temperatur wynosila: 23.4409
+Najmniejsza temperatura wynosila 15. Wystapila 1 razy.
+Najwieksza temperatura wynosila 33. Wystapila  2 razy.
