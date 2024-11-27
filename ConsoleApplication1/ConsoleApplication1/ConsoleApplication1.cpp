@@ -20,8 +20,8 @@ int main()
 	ofstream sorted("sorted.txt");
 	Date date;
 	vector <Date> lines;
-	const int  s = 10;
-	string miasta[s] = { "Rzeszow ", "Krakow ", "Lwow ", "Hamburg ", "Londyn ", "Warszawa ", "Poznan ", "Lizbona ", "Moskwa ", "Wolka Grodziska "};
+	const int sizes = 10;
+	string miasta[sizes] = { "Rzeszow", "Krakow", "Lwow", "Hamburg", "Londyn", "Warszawa", "Poznan", "Lizbona", "Moskwa", "Wolka Grodziska"};
 	lines.reserve(100);
 	string line="";
 
@@ -40,15 +40,15 @@ int main()
 			}
 		}
 
-		Date h;
+		Date date;
 
 		int size = lines.size();
 		for (int j = 0; j < size; j++) {
 			for (int i = 1; i < size - j; i++) {
 				if (lines[i].temp < lines[i - 1].temp) {
-					h = lines[i];
+					date = lines[i];
 					lines[i] = lines[i - 1];
-					lines[i - 1] = h;
+					lines[i - 1] = date;
 				} 
 			}
 		}
@@ -74,18 +74,18 @@ int main()
 		wyniki << "Najmniejsza temperatura wynosila " << lines[0].temp << ". Wystapila " << counter << " razy.\n";
 
 		int max = lines[size-1].temp;
-		int j = 0;
+		int index = 0;
 		int counterr = 1;
-		while (max == lines[size-2-j].temp) {
+		while (max == lines[size-2-index].temp) {  
 			counterr++;
-			j++;
+			index++;
 		}
 		cout << "\nNajwieksza temperatura mialo " << counterr << " dni.\n";
 		wyniki << "Najwieksza temperatura wynosila " << lines[lines.size()-1].temp << ". Wystapila  " << counterr << " razy.\n";
 
 
 		for (auto item : lines) {
-			sorted << miasta[rand() % s] << item.data << ';' << item.temp << '\n';
+			sorted << miasta[rand() % sizes]<<" " << item.data << ';' << item.temp << '\n';
 		}
 	}
 
@@ -94,4 +94,18 @@ int main()
 	file.close();	 
 	wyniki.close();
 	sorted.close();
+
+	ifstream cities("sorted.txt");
+	if (cities) {
+		string linia;
+		string miasto;
+		while (cities >> (miasto, linia))
+		{
+			if (miasto == miasta[5]) {
+				cout << miasto << " " << linia << '\n';
+			}
+		}
+	}
+	else cout << "Error";
+	cities.close();
 }
